@@ -55,7 +55,7 @@ namespace Task_2
                 }
             }
 
-            Console.WriteLine(sum);
+            Console.WriteLine("Сумма случайных чисел в файле - {0}", sum);
             Console.ReadKey();
             #endregion
         }
