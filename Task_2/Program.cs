@@ -23,19 +23,41 @@ namespace Task_2
                 Directory.CreateDirectory(dirPath);
             }
 
+            #region StreamWriter
+            //Через генератор случайных чисел записываем в файл 10 чисел
             Random random = new Random();
 
-            StreamWriter sw = new StreamWriter(filePath);
-            for (int i = 1; i <= 10; i++)
+            using (StreamWriter sw = new StreamWriter(filePath, false))
             {
-                sw.WriteLine(random.Next());
-            }  
-            sw.Flush();
+                for (int i = 1; i <= 10; i++)
+                {
+                    sw.WriteLine(random.Next(100));
+                }
+            }
+            #endregion
 
-            StreamReader sr = new StreamReader(filePath);
+            #region StreamReader
+            //Считываем строки из файла и записываем сумму в отдельную переменную
+            int sum = 0;
 
+            using (StreamReader sr = new StreamReader(filePath))
+            {
+                while (true)
+                {
+                    string str = sr.ReadLine();
 
+                    if (str == null)
+                    {
+                        break;
+                    }
 
+                    sum += Convert.ToInt32(str);
+                }
+            }
+
+            Console.WriteLine(sum);
+            Console.ReadKey();
+            #endregion
         }
     }
 }
